@@ -1,35 +1,39 @@
 from flask import Flask
-import logging
 from flask import request
+import logging
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 
 @app.route('/')
 def index():
-    out = 'OK'
-    logging.info(request.args)#.get("q")) #also d
     if request.args.get("q")=='Puzzle':
-        out = " ABCD\nA=>>>\nB<=<<\nC<>=>\nD<><="
+        return solvePuzzle(request.get("d"))
     elif request.args.get("q")=='Name':
-        out = 'Jaideep Singh'
+        return 'Jaideep Singh'
     elif request.args.get("q")=='Email Address':
-        out = 'jd@jaideepsingh.in'
+        return 'jd@jaideepsingh.in'
     elif request.args.get("q")=='Phone':
-        out = '765-337-7543'
+        return '765-337-7543'
     elif request.args.get("q")=='Position':
-        out = 'Engineer'
+        return 'Engineer'
     elif request.args.get("q")=='Years':
-        out = '5'
+        return '5'
     elif request.args.get("q")=='Referrer':
-        out = 'Online'
+        return 'Online'
     elif request.args.get("q")=='Degree':
-        out = 'BS in CS from Purdue University'
+        return 'BS in CS from Purdue University'
     elif request.args.get("q")=='Resume':
-        out = 'https://drive.google.com/file/d/0ByVqCuHG6OISZlJIVFU2UVNleEE/view?usp=sharing'
+        return 'https://drive.google.com/file/d/0ByVqCuHG6OISZlJIVFU2UVNleEE/view?usp=sharing'
     elif request.args.get("q")=='Status':
-        out = 'Yes'
+        return 'Yes'
     elif request.args.get("q")=='Source':
-        out = 'https://github.com/singhjaideep/resume_submission_api'
-    return out
+        return 'https://github.com/singhjaideep/resume_submission_api'
+    else:
+        return 'OK'
 
+def solvePuzzle(puzzle_input):
+    puzzle_output = ''
+    logging.info(puzzle_input)
+    #Format: " ABCD\nA=>>>\nB<=<<\nC<>=>\nD<><="
+    return puzzle_output
